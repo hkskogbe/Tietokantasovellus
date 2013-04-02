@@ -1,0 +1,60 @@
+/* 
+    Document   : Tyylit
+    Created on : Mar 31, 2013, 11:27:49 PM
+    Author     : hkskogbe
+    Description:
+        Stylesheet kirjastotietokannalle.
+*/
+
+fieldset {
+    font-size: 1em;
+    background-color: white;
+}
+
+body {
+    background-color:#e0ffff;
+    font-family: Helvetica, Arial, sans-serif;
+}
+
+.nav {
+    background-color: white;
+    padding: 0.5em;
+    clear:both;
+    
+    position:absolute;
+    left:0;
+    top:0;
+    right:0;
+}
+
+h1 {
+    margin-top:55px;
+    color:buttonshadow;
+}
+
+.pienella {
+    font-size: small;
+}
+
+.vasen {
+    float: left;
+    margin: 1em;
+}
+.oikea {
+    float: right;
+}
+.kentat {
+    width:300px;
+    clear:both;
+    margin-left:10%;
+    margin-top:70px;;
+}
+.kentat label {
+    float:left;
+}
+.kentat input {
+    float:right;
+}
+/*.styleform .clear {
+    clear:both;
+}*/
