@@ -16,6 +16,10 @@
         <servlet-name>KirjautuminenServlet</servlet-name>
         <servlet-class>servletit.KirjautuminenServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>PoistoServlet</servlet-name>
+        <servlet-class>servletit.PoistoServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LisaaKirjaServlet</servlet-name>
         <url-pattern>/LisaaKirja</url-pattern>
@@ -31,6 +35,10 @@
     <servlet-mapping>
         <servlet-name>KirjautuminenServlet</servlet-name>
         <url-pattern>/Kirjautuminen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PoistoServlet</servlet-name>
+        <url-pattern>/Poisto</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

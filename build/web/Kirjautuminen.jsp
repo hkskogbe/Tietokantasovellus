@@ -13,19 +13,29 @@
         <link rel="stylesheet" type"text/css" href="Tyylit.css" />
     </head>
     <body>
-        
-       <nav class="nav">
-            <a href="index.jsp">Pääsivu</a>
-            <a href="LisaaKirja.jsp">Lisaa kirja</a>
 
-            <%  if (request.getRemoteUser() != null) {%>  
-            <a href="logout.jsp" class="oikea">Kirjaudu ulos</a>
-            <%}%>
-        </nav>
-        
-        
+        <%@ include file="nav.jsp" %>
+
+
+
+
         <div class="kentat">
             <fieldset>
+
+                <%
+                    if (session.getAttribute("onnistuiko") != null) {
+                        session.removeAttribute("onnistuiko");
+                %>
+
+                <p class="pienella">
+                    Kirjautuminen epäonnistui. Käyttäjätunnus tai salasana saattaa olla väärin.
+                </p>       
+
+                <%
+                    }
+                %>
+
+
                 <form action="LoginCheck.jsp" method="post">
                     <br/>Käyttäjätunnus:<input type="text" name="username"><br>
                     <br/>Salasana:<input type="password" name="password"><br>
@@ -33,6 +43,8 @@
                 </form>
             </fieldset>
         </div>
+
+
 
     </body>
 </html>

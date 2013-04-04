@@ -17,15 +17,7 @@
     </head>
     <body>
 
-        <nav class="nav">
-            <a href="index.jsp">Pääsivu</a>
-            <a href="LisaaKirja.jsp">Lisaa kirja</a>
-
-            <%
-                if (request.getRemoteUser() != null) {%>  
-            <a href="logout.jsp" class="oikea">Kirjaudu ulos</a>
-            <%}%>
-        </nav>
+         <%@ include file="nav.jsp" %>
 
         <h1>
             Kirjastotietokantasysteemi.

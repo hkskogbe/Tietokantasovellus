@@ -33,7 +33,7 @@ public class KirjaLista {
 
     public List<Kirja> getKirja(String hakuISBN) {
         EntityManager eeam = getEntityManager();
-        return eeam.createQuery("SELECT k FROM Kirja k WHERE k.ISBN LIKE " + hakuISBN).getResultList();
+        return eeam.createQuery("SELECT k FROM Kirja k WHERE k.ISBN = '" + hakuISBN +"'").getResultList();
     }
 
     public List<Kirja> getKirjat(int vuosi) {

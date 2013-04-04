@@ -12,13 +12,11 @@
 
             if ((username.equals("h") && password.equals("h"))) {
                 session.setAttribute("kirjautunut", username);
-                response.sendRedirect("LisaaKirja.jsp");
+                response.sendRedirect("index.jsp");
             } else {
+                session.setAttribute("onnistuiko", "ei");
                 response.sendRedirect("Kirjautuminen.jsp");
             }
         %>
     </body>
 </html>
-
-
-Read more: http://mrbool.com/how-to-create-a-login-form-with-jsp/25685#ixzz2PJfPAygJ

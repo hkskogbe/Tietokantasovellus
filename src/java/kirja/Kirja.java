@@ -17,6 +17,9 @@ public class Kirja implements Serializable {
     @Column
     private int julkaisuvuosi;
     
+    @Column
+    private boolean poistettu;
+    
     public Kirja() {
     }
 
@@ -24,6 +27,7 @@ public class Kirja implements Serializable {
         this.ISBN = ISBN;
         this.nimi = nimi;
         this.julkaisuvuosi = julkaisuvuosi;
+        this.poistettu = false;
     }
 
     public int getJulkaisuvuosi() {
@@ -36,6 +40,14 @@ public class Kirja implements Serializable {
 
     public String getNimi() {
         return nimi;
+    }
+
+    public boolean isPoistettu() {
+        return poistettu;
+    }
+    
+    public void poista() {
+        this.poistettu = true;
     }
     
 }

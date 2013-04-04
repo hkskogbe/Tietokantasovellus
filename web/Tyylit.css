@@ -12,8 +12,9 @@ fieldset {
 }
 
 body {
-    background-color:#e0ffff;
+    background-color:#D6FFFF;
     font-family: Helvetica, Arial, sans-serif;
+    margin-left:7%;
 }
 
 .nav {
@@ -43,6 +44,12 @@ h1 {
 .oikea {
     float: right;
 }
+.ilmoitus {
+    width:300px;
+    clear:both;
+    margin-left:10%;
+    margin-top:15px;;
+}
 .kentat {
     width:300px;
     clear:both;
@@ -55,6 +62,3 @@ h1 {
 .kentat input {
     float:right;
 }
-/*.styleform .clear {
-    clear:both;
-}*/

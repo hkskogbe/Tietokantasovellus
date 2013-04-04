@@ -15,34 +15,26 @@
     </head>
     <body>
 
-
         <%
             if (session.getAttribute("kirjautunut") == null) {
                 response.sendRedirect("Kirjautuminen.jsp");
             }
         %>
 
-
-        <nav class="nav">
-            <a href="index.jsp">Pääsivu</a>
-            <a href="LisaaKirja.jsp">Lisaa kirja</a>
-
-            <%
-                if (request.getRemoteUser() != null) {%>  
-            <a href="logout.jsp" class="oikea">Kirjaudu ulos</a>
-            <%}%>
-        </nav>
+        <%@ include file="nav.jsp" %>
 
 
 
 
-        <h1>ALL YOUR LIBRARY DATABASE ARE BELONG TO US</h1>
+
+
+
 
 
         <div class="kentat">
             <fieldset>
                 <p class="pienella">
-                    Lisää kirja tietokantaan antamalla sen tiedot alla oleviin kenttiin.
+                    Lisää kirja tietokantaan antamalla sen tiedot alla oleviin kenttiin.<br><br>
                 </p>
 
                 <form name="" action="${pageContext.request.contextPath}/Lisays" method="post">
@@ -56,6 +48,38 @@
         </div>
 
 
+        <%
+            if (session.getAttribute("lisattiinkirja") != null) {
+                session.removeAttribute("lisattiinkirja");
+        %>
+        <div class="ilmoitus">
+            <fieldset>
+                <p class="pienella">
+                    Kirja lisättiin onnistuneesti tietokantaan.<br>
+                </p>       
+            </fieldset>
+        </div>
+        <%
+            }
+        %>
+        
+        
+        <%
+            if (session.getAttribute("virhelisattaessa") != null) {
+                session.removeAttribute("virhelisattaessa");
+        %>
+        <div class="ilmoitus">
+            <fieldset>
+                <p class="pienella">
+                    Tapahtui virhe. Tarkista, että julkaisuvuosi sisältää vain numeroita ja että kaikki kentät on täytetty.<br>
+                </p>       
+            </fieldset>
+        </div>
+        <%
+            }
+        %>
+        
+        
         <script src="linkit.js"></script>
     </body>
 </html>

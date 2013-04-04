@@ -1,23 +1,22 @@
 package servletit;
 
+import com.sun.xml.internal.bind.v2.schemagen.xmlschema.List;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import kirja.Kirja;
-import kirja.Kirjailija;
 import listat.KirjaLista;
-import listat.KirjailijaLista;
 
 /**
  *
  * @author hkskogbe
  */
-public class LisaysServlet extends HttpServlet {
+public class PoistoServlet extends HttpServlet {
 
     private KirjaLista lista = new KirjaLista();
-    private KirjailijaLista kirjailijat = new KirjailijaLista();
 
     /**
      * Processes requests for both HTTP
@@ -32,68 +31,21 @@ public class LisaysServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        boolean lisataan = true;
-        
-        if (request.getSession().getAttribute("kirjautunut") == null) {
-            request.getRequestDispatcher("/LisaaKirja").forward(request, response);
-            return;
-        }
-
-        String nimi = request.getParameter("nimi");
         String isbn = request.getParameter("isbn");
-        String jvuosi = request.getParameter("vuosi");
-        String kirjailija = request.getParameter("kirjailija");
-        int julkaisuvuosi = 0;
 
-        System.out.println(kirjailija);
+        if (isbn != null) {
+            java.util.List<Kirja> poistettava = lista.getKirja(isbn);
 
-        if (nimi == null || isbn == null || jvuosi == null || kirjailija == null) {
-            lisataan = false;
-        }
-
-        if (lisataan) {
-            if (!jvuosi.matches("[0-9]+")) {
-                lisataan = false;
+            if (!poistettava.isEmpty()) {
+                poistettava.get(0).poista();
             } else {
-                julkaisuvuosi = Integer.parseInt(jvuosi);
+                request.getSession().setAttribute("virhepoistettaessa", "ei tietokannassa");
             }
-
-
+        } else {
+            request.getSession().setAttribute("virhepoistettaessa", "null isbn");
         }
 
-        // Tarkistetaan, onko kirja jo lisattu
-        for (Kirja k : lista.getKirjat()) {
-            if (k.getISBN().equals(isbn)) {
-                lisataan = false;
-            }
-        }
-
-        if (lisataan) {
-            Kirja kirja = new Kirja(isbn, nimi, julkaisuvuosi);
-
-            lista.lisaaKirja(kirja);
-
-            lisaaKirjailijat(request, kirjailija, kirja);
-            
-            request.getSession().setAttribute("lisattiinkirja", "joo");
-        }
-        
-        if (!lisataan) {
-            request.getSession().setAttribute("virhelisattaessa", "tapahtui");
-        }
-        
-        request.getRequestDispatcher("/LisaaKirja").forward(request, response);
-    }
-
-    private void lisaaKirjailijat(HttpServletRequest request, String kirjailijoidenNimet, Kirja kirja) {
-
-        String[] nimet;
-
-        nimet = kirjailijoidenNimet.split(",");
-
-        for (String nimi : nimet) {
-            kirjailijat.lisaaKirjailija(new Kirjailija(kirja, nimi));
-        }
+        request.getRequestDispatcher("PoistaKirja.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
