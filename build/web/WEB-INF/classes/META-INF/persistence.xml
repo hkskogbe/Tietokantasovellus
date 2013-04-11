@@ -4,11 +4,11 @@
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/Kirjasto"/>
-      <property name="javax.persistence.jdbc.password" value="h"/>
-      <property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver"/>
-      <property name="javax.persistence.jdbc.user" value="h"/>
-      <property name="eclipselink.ddl-generation" value="drop-and-create-tables"/>
+      <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost/hkskogbe"/>
+      <property name="javax.persistence.jdbc.password" value="06d3ab218a2ef4fe"/>
+      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
+      <property name="javax.persistence.jdbc.user" value="hkskogbe"/>
+      <property name="eclipselink.ddl-generation" value="create-tables"/>
     </properties>
   </persistence-unit>
 </persistence>

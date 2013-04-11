@@ -26,11 +26,6 @@
 
 
 
-
-
-
-
-
         <div class="kentat">
             <fieldset>
                 <p class="pienella">

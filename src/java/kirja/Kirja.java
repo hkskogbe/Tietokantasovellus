@@ -49,5 +49,16 @@ public class Kirja implements Serializable {
     public void poista() {
         this.poistettu = true;
     }
-    
+
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
+    }
+
+    public void setJulkaisuvuosi(int julkaisuvuosi) {
+        this.julkaisuvuosi = julkaisuvuosi;
+    }
+
+    public void setNimi(String nimi) {
+        this.nimi = nimi;
+    }
 }

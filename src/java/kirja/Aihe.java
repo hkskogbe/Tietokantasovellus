@@ -9,11 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
-@Entity
-public class Kirjailija implements Serializable {
+public class Aihe implements Serializable {
 
     @Id
-    @GeneratedValue(strategy=GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     
     @JoinColumn
@@ -21,30 +20,31 @@ public class Kirjailija implements Serializable {
     private Kirja kirja;
     
     @Column
-    private String kirjailijanNimi;
+    private String aihe;
 
-    public Kirjailija() {
+    public Aihe() {
     }
 
-    public Kirjailija(Kirja kirja, String kirjailijanNimi) {
+    public Aihe(Kirja kirja, String aihe) {
         this.kirja = kirja;
-        this.kirjailijanNimi = kirjailijanNimi;
+        this.aihe = aihe;
+    }
+
+    public String getAihe() {
+        return aihe;
     }
 
     public Kirja getKirja() {
         return kirja;
     }
 
-    public String getKirjailijanNimi() {
-        return kirjailijanNimi;
+    public void setAihe(String aihe) {
+        this.aihe = aihe;
     }
 
     public void setKirja(Kirja kirja) {
         this.kirja = kirja;
     }
-
-    public void setKirjailijanNimi(String kirjailijanNimi) {
-        this.kirjailijanNimi = kirjailijanNimi;
-    }
+    
     
 }
