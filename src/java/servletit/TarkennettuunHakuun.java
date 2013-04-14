@@ -2,21 +2,12 @@ package servletit;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import listat.KirjaLista;
-import listat.KirjailijaLista;
 
-/**
- *
- * @author hkskogbe
- */
-public class ListaaKirjatServlet extends HttpServlet {
-
-    private KirjaLista lista = new KirjaLista();
+public class TarkennettuunHakuun extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -30,17 +21,8 @@ public class ListaaKirjatServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-
-        String haku = request.getParameter("valinta");
-
-//        request.setAttribute("kirjalista", lista.getKirjat());
-
-        request.getSession().setAttribute("lista", lista.getKirjat());
-        request.setAttribute("lista", lista.getKirjat());
-
-        RequestDispatcher rd = request.getRequestDispatcher("hakusivu.jsp");
-        rd.forward(request, response);
+        request.getSession().setAttribute("tarkennettuHaku", "kyllä");
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

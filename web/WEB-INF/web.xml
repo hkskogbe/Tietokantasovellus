@@ -20,6 +20,18 @@
         <servlet-name>PoistoServlet</servlet-name>
         <servlet-class>servletit.PoistoServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>TarkennettuunHakuun</servlet-name>
+        <servlet-class>servletit.TarkennettuunHakuun</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>TarkemmatTiedot</servlet-name>
+        <servlet-class>servletit.TarkemmatTiedot</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>EtusivuServlet</servlet-name>
+        <servlet-class>servletit.EtusivuServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LisaaKirjaServlet</servlet-name>
         <url-pattern>/LisaaKirja</url-pattern>
@@ -39,6 +51,18 @@
     <servlet-mapping>
         <servlet-name>PoistoServlet</servlet-name>
         <url-pattern>/Poisto</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TarkennettuunHakuun</servlet-name>
+        <url-pattern>/TarkennettuunHakuun</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>TarkemmatTiedot</servlet-name>
+        <url-pattern>/TarkemmatTiedot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EtusivuServlet</servlet-name>
+        <url-pattern>/Etusivu</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

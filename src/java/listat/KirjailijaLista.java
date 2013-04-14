@@ -1,18 +1,19 @@
-
 package listat;
 
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import kirja.Aihe;
+import kirja.Kirja;
 import kirja.Kirjailija;
 
-
 public class KirjailijaLista {
+
     private EntityManagerFactory kirjailijat = null;
 
     public KirjailijaLista() {
-         kirjailijat = Persistence.createEntityManagerFactory("KirjastotietokantaPU");
+        kirjailijat = Persistence.createEntityManagerFactory("KirjastotietokantaPU");
     }
 
     public EntityManager getEntityManager() {
@@ -30,6 +31,9 @@ public class KirjailijaLista {
         eeam.persist(k);
         eeam.getTransaction().commit();
     }
-    
-    
+
+    public List<Kirjailija> getKirjanKirjailijat(Kirja kirja) {
+        EntityManager eeam = getEntityManager();
+        return eeam.createQuery("SELECT k FROM Kirjailija k WHERE k.kirja.ISBN = '" + kirja.getISBN() + "'"  ).getResultList();
+    }
 }

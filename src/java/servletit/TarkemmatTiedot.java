@@ -2,21 +2,24 @@ package servletit;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
+import java.util.ArrayList;
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import kirja.Aihe;
+import kirja.Kirja;
+import kirja.Kirjailija;
+import listat.AiheLista;
 import listat.KirjaLista;
 import listat.KirjailijaLista;
 
-/**
- *
- * @author hkskogbe
- */
-public class ListaaKirjatServlet extends HttpServlet {
+public class TarkemmatTiedot extends HttpServlet {
 
     private KirjaLista lista = new KirjaLista();
+    private KirjailijaLista kirjailijalista = new KirjailijaLista();
+//    private AiheLista aihelista = new AiheLista();
 
     /**
      * Processes requests for both HTTP
@@ -32,15 +35,52 @@ public class ListaaKirjatServlet extends HttpServlet {
             throws ServletException, IOException {
 
 
-        String haku = request.getParameter("valinta");
 
-//        request.setAttribute("kirjalista", lista.getKirjat());
+        request.getSession().setAttribute("tiedotNakyvissa", true);
 
-        request.getSession().setAttribute("lista", lista.getKirjat());
-        request.setAttribute("lista", lista.getKirjat());
+        String isbn = request.getParameter("isbn");
+        List<Kirja> listana = lista.getKirja(isbn);
 
-        RequestDispatcher rd = request.getRequestDispatcher("hakusivu.jsp");
-        rd.forward(request, response);
+        Kirja kirja;
+
+        if (listana.isEmpty()) {
+            kirja = new Kirja("Tapahtui virhe.", isbn, 0000);
+        } else {
+            kirja = listana.get(0);
+        }
+
+//        try {
+//        } catch (Exception e) {
+//            request.getRequestDispatcher("index.jsp").forward(request, response);
+//            return;
+//        }
+
+        List<String> tiedot = new ArrayList<String>();
+        tiedot.add(kirja.getNimi());
+        tiedot.add(kirja.getISBN());
+        tiedot.add("" + kirja.getJulkaisuvuosi());
+
+        List<Kirjailija> kirjailijat = kirjailijalista.getKirjanKirjailijat(kirja);
+
+        String kirjailijaString = "";
+
+        for (Kirjailija kirjailija : kirjailijat) {
+            kirjailijaString += kirjailija.getKirjailijanNimi() + "   ";
+        }
+        tiedot.add(kirjailijaString);
+
+//        List<Aihe> aiheet = aihelista.getKirjaanLiittyvatAiheet(kirja);
+//        
+//        String aiheString = "";
+//        for (Aihe aihe : aiheet) {
+//            aiheString += aihe.getAihe() + ", ";
+//        }
+//        aiheString = aiheString.substring(0, aiheString.length() - 2);
+//        tiedot.add(aiheString);
+
+        request.setAttribute("tiedot", tiedot);
+
+        request.getRequestDispatcher("hakusivu.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

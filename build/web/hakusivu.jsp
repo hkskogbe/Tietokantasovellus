@@ -1,9 +1,8 @@
 <%-- 
-    Document   : index
-    Created on : Mar 31, 2013, 10:22:23 PM
+    Document   : hakusivu
+    Created on : Apr 14, 2013, 3:10:09 PM
     Author     : hkskogbe
 --%>
-
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,10 +13,6 @@
         <title>Kirjastotietokanta</title>
         <link rel="stylesheet" type"text/css" href="Tyylit.css" />
 
-              <%
-                  session.removeAttribute("lista");
-                  response.sendRedirect("Etusivu");
-              %>
 
     </head>
     <body>
@@ -28,6 +23,9 @@
             Kirjastotietokanta
         </h1>
 
+        <%@ include file="haku.jsp" %>
+
+        <%@ include file="hakutulokset.jsp" %>
 
         <script src="linkit.js"></script>
     </body>

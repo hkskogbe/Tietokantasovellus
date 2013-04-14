@@ -16,7 +16,9 @@
 
         <%@ include file="nav.jsp" %>
 
-
+        <%
+            session.removeAttribute("lista");
+        %>
 
 
         <div class="kentat">
