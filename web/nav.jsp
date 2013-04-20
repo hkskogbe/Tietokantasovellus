@@ -1,5 +1,6 @@
 <nav class="nav">
     <a href="index.jsp">Haku</a>
+    <a href="Ohjeet.jsp">Ohjeet</a>
 
     <%
         if (session.getAttribute("kirjautunut") != null) {%>  

@@ -46,6 +46,4 @@ public class Aihe implements Serializable {
     public void setKirja(Kirja kirja) {
         this.kirja = kirja;
     }
-    
-    
 }

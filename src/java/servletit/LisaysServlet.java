@@ -33,7 +33,7 @@ public class LisaysServlet extends HttpServlet {
             throws ServletException, IOException {
 
         boolean lisataan = true;
-        
+
         if (request.getSession().getAttribute("kirjautunut") == null) {
             request.getRequestDispatcher("/LisaaKirja").forward(request, response);
             return;
@@ -73,27 +73,31 @@ public class LisaysServlet extends HttpServlet {
 
             lista.lisaaKirja(kirja);
 
-            lisaaKirjailijat(request, kirjailija, kirja);
-            
+            lisaaKirjailijat(kirjailija, kirja);
+
             request.getSession().setAttribute("lisattiinkirja", "joo");
         }
-        
+
         if (!lisataan) {
             request.getSession().setAttribute("virhelisattaessa", "tapahtui");
         }
-        
+
         request.getRequestDispatcher("/LisaaKirja").forward(request, response);
     }
 
-    private void lisaaKirjailijat(HttpServletRequest request, String kirjailijoidenNimet, Kirja kirja) {
+    private void lisaaKirjailijat(String kirjailijoidenNimet, Kirja kirja) {
 
         String[] nimet;
 
-        nimet = kirjailijoidenNimet.split(",");
+        nimet = kirjailijoidenNimet.split(";");
 
         for (String nimi : nimet) {
             kirjailijat.lisaaKirjailija(new Kirjailija(kirja, nimi));
         }
+    }
+
+    private void lisaaAiheet(String aiheet, Kirja kirja) {
+        // TÄHÄN TULEE ABOUT SAMA KUIN YLLÄ Kirjailijoiden KOHDALLA
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

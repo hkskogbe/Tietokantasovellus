@@ -50,6 +50,10 @@ public class Kirja implements Serializable {
         this.poistettu = true;
     }
 
+    public void setPoistettu(boolean poistettu) {
+        this.poistettu = poistettu;
+    }
+
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
     }

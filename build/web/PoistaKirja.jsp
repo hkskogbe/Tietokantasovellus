@@ -10,24 +10,13 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Kirjastotietokanta</title>
-        <link rel="stylesheet" type"text/css" href="Tyylit.css" />
+        <link rel="stylesheet" type="text/css" href="Tyylit.css" />
     </head>
     <body>
 
-        <%
-            session.removeAttribute("lista");
-
-            if (session.getAttribute("kirjautunut") == null) {
-                response.sendRedirect("Kirjautuminen.jsp");
-            }
-        %>
+        <%@include  file="vaatiiKirjautumisen.jsp" %>
 
         <%@ include file="nav.jsp" %>
-
-
-
-
-
 
         <div class="kentat">
             <fieldset>
@@ -37,7 +26,13 @@
 
                 <form name="" action="${pageContext.request.contextPath}/Poisto" method="post">
                     <label>ISBN</label> <input type="text" name="isbn"><br><br>
-                    <input type="submit" value="Poista kirja">
+
+                    <div>
+                        <input type="radio" name="poistetaan" value="y" checked=""><p class="pienella">Lisätään poistomerkintä</p>
+                        <input type="radio" name="poistetaan" value="n"><p class="pienella">Poistetaan poistomerkintä</p>
+                    </div>
+
+                    <input type="submit" value="Tee muutos">
                 </form>
 
             </fieldset>

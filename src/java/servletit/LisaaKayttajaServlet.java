@@ -2,25 +2,19 @@ package servletit;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import listat.KayttajaLista;
 
 /**
  *
  * @author hkskogbe
  */
-public class KirjautuminenServlet extends HttpServlet {
+public class LisaaKayttajaServlet extends HttpServlet {
 
-    KayttajaLista lista = new KayttajaLista();
+    KayttajaLista kayttajat = new KayttajaLista();
 
     /**
      * Processes requests for both HTTP
@@ -34,30 +28,10 @@ public class KirjautuminenServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        HttpSession session = request.getSession();
-
-        String tunnus = request.getParameter("tunnus");
-        String salasana = request.getParameter("salasana");
-
-        if (kirjautuminenOnnistuu(tunnus, salasana)) {
-            session.setAttribute("kirjautunut", tunnus);
-        } else {
-        }
-
-
-    }
-
-    private boolean kirjautuminenOnnistuu(String tunnus, String salasana) {
-        MessageDigest md;
-        try {
-            md = MessageDigest.getInstance("98dfKTE2LA");
-            byte[] bytena = md.digest(salasana.getBytes("UTF-8"));
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
-
-
-        return true;
+        
+        
+        
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

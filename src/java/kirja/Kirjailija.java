@@ -46,5 +46,10 @@ public class Kirjailija implements Serializable {
     public void setKirjailijanNimi(String kirjailijanNimi) {
         this.kirjailijanNimi = kirjailijanNimi;
     }
+
+    public long getId() {
+        return id;
+    }
+    
     
 }

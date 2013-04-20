@@ -8,6 +8,7 @@
         <%@ include file="hakuvirheilmoitus.jsp" %>
 
         <form action="${pageContext.request.contextPath}/ListaaKirjat" method="get">
+
             <div class="vasen">
                 <br/>Teoksen nimi tai nimen osa<br>
                 <br/>Kirjailija<br>
@@ -15,20 +16,28 @@
                 <br/>Julkaisuvuosi välillä<br>
                 <br>
             </div>
+
             <div class="oikea">
                 <br><input type="text" name="kirja"><br><br>
                 <input type="text" name="kirjailija"><br><br>
                 <input type="text" name="aihe"><br><br>
                 <input style="float:left; margin-right:11px;" maxlength="4" class="vuosiInput" type="text" name="avuosi"> - <input class="vuosiInput" maxlength="4" type="text" name="lvuosi"><br><br>
-                <input type="submit" value="Hae" name="haku">
+                <input type="submit" value="Hae" name="haku" id="hakuehto">
             </div>
 
         </form>
-        <a href="index.jsp"><button>Yksinkertaiseen hakuun</button></a>
+
+        <form style="display:inline" action="hakusivu.jsp" method="get">
+            <button>
+                Yksinkertaiseen hakuun
+            </button>
+        </form>
+
     </fieldset>
 </div>
 
-<%        } else {
+<%
+} else {
 %>
 
 <div class="haku">
@@ -36,13 +45,19 @@
         <%@ include file="hakuvirheilmoitus.jsp" %>
 
         <form action="${pageContext.request.contextPath}/ListaaKirjat" method="get">
-            <br/>Teoksen nimi tai nimen osa<input type="text" name="kirja"><br>
+            <br/>Teoksen nimen osa tai ISBN<input type="text" name="kirja"><br>
             <br/>
-            <input type="submit" value="Hae" name="haeNimella">
+            <input type="submit" value="Hae" name="haeNimella" id="hakuehto">
         </form>
-        <a href="${pageContext.request.contextPath}/TarkennettuunHakuun"><button>Tarkennettuun hakuun</button></a>
+
+        <form style="display:inline" action="${pageContext.request.contextPath}/TarkennettuunHakuun" method="get">
+            <button>
+                Tarkennettuun hakuun
+            </button>
+        </form>
+
     </fieldset>
 </div>
 
-<%            }
+<%    }
 %>

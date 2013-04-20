@@ -3,33 +3,28 @@ package kayttaja;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Kayttaja implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
-    @Column
     private String nimi;
     @Column
-    private String salasana;
+    private byte[] salasana;
     @Column
     private KayttajaTyyppi tyyppi;
 
     public Kayttaja() {
     }
 
-    public Kayttaja(String nimi, String salasana, KayttajaTyyppi tyyppi) {
+    public Kayttaja(String nimi, byte[] salasana, KayttajaTyyppi tyyppi) {
         this.nimi = nimi;
         this.salasana = salasana;
         this.tyyppi = tyyppi;
     }
 
-    public String getSalasana() {
+    public byte[] getSalasana() {
         return salasana;
     }
 
@@ -45,7 +40,7 @@ public class Kayttaja implements Serializable {
         this.tyyppi = tyyppi;
     }
 
-    public void setSalasana(String salasana) {
+    public void setSalasana(byte[] salasana) {
         this.salasana = salasana;
     }
 

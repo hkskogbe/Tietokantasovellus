@@ -32,6 +32,10 @@
         <servlet-name>EtusivuServlet</servlet-name>
         <servlet-class>servletit.EtusivuServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>LisaaKayttajaServlet</servlet-name>
+        <servlet-class>servletit.LisaaKayttajaServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LisaaKirjaServlet</servlet-name>
         <url-pattern>/LisaaKirja</url-pattern>
@@ -63,6 +67,10 @@
     <servlet-mapping>
         <servlet-name>EtusivuServlet</servlet-name>
         <url-pattern>/Etusivu</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LisaaKayttajaServlet</servlet-name>
+        <url-pattern>/LisaaKayttaja</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

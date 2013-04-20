@@ -30,12 +30,17 @@ public class PoistoServlet extends HttpServlet {
             throws ServletException, IOException {
 
         String isbn = request.getParameter("isbn");
+        String poisto = request.getParameter("poistetaan");
 
         if (isbn != null) {
             java.util.List<Kirja> poistettava = lista.getKirja(isbn);
 
             if (!poistettava.isEmpty()) {
-                poistettava.get(0).poista();
+                if (poisto.equals("y")) {
+                    poistettava.get(0).poista();
+                } else {
+                    poistettava.get(0).setPoistettu(false);
+                }
             } else {
                 request.getSession().setAttribute("virhepoistettaessa", "ei tietokannassa");
             }

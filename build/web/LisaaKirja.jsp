@@ -8,19 +8,14 @@
 <html>
     <head>
 
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">LisaaKirja
         <title>Kirjastotietokanta</title>
-        <link rel="stylesheet" type"text/css" href="Tyylit.css" />
+        <link rel="stylesheet" type="text/css" href="Tyylit.css" />
 
     </head>
     <body>
 
-        <%
-            request.removeAttribute("lista");
-            if (session.getAttribute("kirjautunut") == null) {
-                response.sendRedirect("Kirjautuminen.jsp");
-            }
-        %>
+        <%@include  file="vaatiiKirjautumisen.jsp" %>
 
         <%@ include file="nav.jsp" %>
 
