@@ -1,11 +1,16 @@
 package servletit;
 
 import java.io.IOException;
-import java.io.PrintWriter;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import kayttaja.Kayttaja;
+import kayttaja.KayttajaTyyppi;
 import listat.KayttajaLista;
 
 /**
@@ -28,13 +33,55 @@ public class LisaaKayttajaServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        
-        
-        
+
+        boolean lisataan = true;
+
+        if (request.getSession().getAttribute("kirjautunut") == null) {
+            request.getRequestDispatcher("/LisaaKayttaja").forward(request, response);
+            return;
+        }
+
+        String tunnus = request.getParameter("nimi");
+        String salasana = request.getParameter("salasana");
+
+
+        if (tunnus == null || salasana == null) {
+            lisataan = false;
+        }
+
+
+        for (Kayttaja k : kayttajat.getKayttajat()) {
+            if (k.getNimi().equalsIgnoreCase(tunnus)) {
+                lisataan = false;
+            }
+        }
+
+        MessageDigest md;
+
+        if (lisataan) {
+            try {
+                md = MessageDigest.getInstance("MD5");
+                byte[] bytena = md.digest(salasana.getBytes("UTF-8"));
+                Kayttaja uusi = new Kayttaja(tunnus, bytena, KayttajaTyyppi.KIRJAUTUNUT);
+                kayttajat.lisaaKayttaja(uusi);
+
+                request.getSession().setAttribute("lisattiinkayttaja", true);
+
+            } catch (NoSuchAlgorithmException ex) {
+                lisataan = false;
+                Logger.getLogger(LisaaKayttajaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+
+        if (!lisataan) {
+            request.getSession().setAttribute("virhelisattaessakayttajaa", true);
+        }
+
+        request.getRequestDispatcher("/LisaaKayttaja").forward(request, response);
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP
      * <code>GET</code> method.

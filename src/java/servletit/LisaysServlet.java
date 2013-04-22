@@ -45,7 +45,6 @@ public class LisaysServlet extends HttpServlet {
         String kirjailija = request.getParameter("kirjailija");
         int julkaisuvuosi = 0;
 
-        System.out.println(kirjailija);
 
         if (nimi == null || isbn == null || jvuosi == null || kirjailija == null) {
             lisataan = false;
@@ -75,11 +74,11 @@ public class LisaysServlet extends HttpServlet {
 
             lisaaKirjailijat(kirjailija, kirja);
 
-            request.getSession().setAttribute("lisattiinkirja", "joo");
+            request.getSession().setAttribute("lisattiinkirja", true);
         }
 
         if (!lisataan) {
-            request.getSession().setAttribute("virhelisattaessa", "tapahtui");
+            request.getSession().setAttribute("virhelisattaessa", true);
         }
 
         request.getRequestDispatcher("/LisaaKirja").forward(request, response);

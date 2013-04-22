@@ -1,5 +1,6 @@
 package listat;
 
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
@@ -24,9 +25,15 @@ public class KayttajaLista {
         eeam.getTransaction().commit();
     }
 
-    public Kayttaja getKayttaja(String tunnus, byte[] salasana) {
+    public Kayttaja getKayttaja(String tunnus) {
         EntityManager eeam = getEntityManager();
-        return (Kayttaja) eeam.createQuery("SELECT k FROM Kayttaja k WHERE k.tunnus = '" + tunnus
-                + "' AND k.salasana = '" + salasana + "'").getResultList().get(0);
+        return (Kayttaja) eeam.createQuery(
+                "SELECT k FROM Kayttaja k WHERE k.tunnus = '" + tunnus + "'").getSingleResult();
+    }
+
+    public List<Kayttaja> getKayttajat() {
+        EntityManager eeam = getEntityManager();
+        return eeam.createQuery("SELECT k FROM Kayttaja k").getResultList();
+
     }
 }
