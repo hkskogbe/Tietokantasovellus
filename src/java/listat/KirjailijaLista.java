@@ -8,6 +8,11 @@ import kirja.Aihe;
 import kirja.Kirja;
 import kirja.Kirjailija;
 
+/**
+ * Käsittelee tietokannan Kirjailija-olioita.
+ *
+ * @author hkskogbe
+ */
 public class KirjailijaLista {
 
     private EntityManagerFactory kirjailijat = null;
@@ -20,11 +25,21 @@ public class KirjailijaLista {
         return kirjailijat.createEntityManager();
     }
 
+    /**
+     * Hakee kaikki kirjailijat.
+     *
+     * @return
+     */
     public List<Kirjailija> getKirjailijat() {
         EntityManager eeam = this.getEntityManager();
-        return eeam.createQuery("SELECT DISTINCT k FROM Kirjailija k").getResultList();
+        return eeam.createQuery("SELECT k FROM Kirjailija k").getResultList();
     }
 
+    /**
+     * Lisää tietokantaan kirjailijan.
+     *
+     * @param k
+     */
     public void lisaaKirjailija(Kirjailija k) {
         EntityManager eeam = getEntityManager();
         eeam.getTransaction().begin();
@@ -32,8 +47,14 @@ public class KirjailijaLista {
         eeam.getTransaction().commit();
     }
 
+    /**
+     * Hakee kirjailijat kirjan perusteella.
+     *
+     * @param kirja
+     * @return
+     */
     public List<Kirjailija> getKirjanKirjailijat(Kirja kirja) {
         EntityManager eeam = getEntityManager();
-        return eeam.createQuery("SELECT k FROM Kirjailija k WHERE k.kirja.ISBN = '" + kirja.getISBN() + "'"  ).getResultList();
+        return eeam.createQuery("SELECT k FROM Kirjailija k WHERE k.kirja.ISBN = '" + kirja.getISBN() + "'").getResultList();
     }
 }

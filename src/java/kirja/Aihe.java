@@ -1,6 +1,7 @@
 package kirja;
 
 import java.io.Serializable;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -9,17 +10,21 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+/**
+ * Aihe-oliot liittyvät kirjoihin. Kirjalla voi olla useampi aihe. Yksi aihe
+ * liittyy vain yhteen kirjaan.
+ *
+ * @author hkskogbe
+ */
 @Entity
 public class Aihe implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    
     @JoinColumn
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Kirja kirja;
-    
     @Column
     private String aihe;
 

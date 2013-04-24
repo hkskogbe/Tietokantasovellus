@@ -7,6 +7,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+/**
+ * Ohjaa käyttäjän tarkennettuun hakuun.
+ *
+ * @author hkskogbe
+ */
 public class TarkennettuunHakuun extends HttpServlet {
 
     /**
@@ -21,7 +26,7 @@ public class TarkennettuunHakuun extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        request.getSession().setAttribute("tarkennettuHaku", "kyllä");
+        request.getSession().setAttribute("tarkennettuHaku", true);
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 

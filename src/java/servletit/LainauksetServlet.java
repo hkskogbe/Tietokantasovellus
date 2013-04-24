@@ -1,26 +1,24 @@
 package servletit;
 
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.util.Arrays;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import kayttaja.Kayttaja;
-import listat.KayttajaLista;
+import listat.LainausLista;
 
 /**
- * Käsittelee kirjautumistoiminnon.
  *
  * @author hkskogbe
  */
-public class KirjautuminenServlet extends HttpServlet {
+public class LainauksetServlet extends HttpServlet {
 
-    KayttajaLista lista = new KayttajaLista();
-
+    LainausLista lainaukset = new LainausLista();
+    
     /**
+     * Processes requests for both HTTP
+     * <code>GET</code> and
+     * <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -29,47 +27,13 @@ public class KirjautuminenServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        try {
-            HttpSession session = request.getSession();
-
-            String tunnus = request.getParameter("username");
-            String salasana = request.getParameter("password");
-
-            if (kirjautuminenOnnistuu(session, tunnus, salasana)) {
-                session.setAttribute("kirjautunut", tunnus);
-            } else {
-                request.getRequestDispatcher("Kirjautuminen.jsp").forward(request, response);
-            }
-
-            request.getRequestDispatcher("Etusivu").forward(request, response);
-        } catch (Exception e) {
-            request.getRequestDispatcher("Kirjautuminen.jsp").forward(request, response);
-        }
-    }
-
-    /**
-     * Metodi tarkistaa, voiko parametreina annetulla tunnuksella ja salasanalla
-     * kirjautua sisään.
-     *
-     * @param tunnus
-     * @param salasana
-     * @return
-     */
-    private boolean kirjautuminenOnnistuu(HttpSession session, String tunnus, String salasana) {
-        if (tunnus.equals("h") && salasana.equals("h")) {
-            session.setAttribute("yllapitaja", tunnus);
-            return true;
-        }
-
-        Kayttaja k = lista.getKayttaja(tunnus);
-        if (k != null) {
-            if (salasana.equals(k.getSalasana())) {
-                return true;
-            }
-
-        }
-
-        return false;
+       
+        /* 
+         * 
+         * CODE HERE
+         * 
+         */
+        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

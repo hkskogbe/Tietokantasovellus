@@ -1,4 +1,3 @@
-
 package kirja;
 
 import java.io.Serializable;
@@ -6,20 +5,25 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+/**
+ * Tietokannan olennaisin tietosisältö sisältyy Kirja-olioihin. Kirjat pitävät
+ * sisällään teoksen ISBN:n, nimen, julkaisuvuoden sekä tiedon siitä, onko teos
+ * poistettu tietokannasta.
+ *
+ * @author hkskogbe
+ */
 @Entity
 public class Kirja implements Serializable {
+
     @Id
     private String ISBN;
-
     @Column
     private String nimi;
-    
     @Column
     private int julkaisuvuosi;
-    
     @Column
     private boolean poistettu;
-    
+
     public Kirja() {
     }
 
@@ -45,7 +49,7 @@ public class Kirja implements Serializable {
     public boolean isPoistettu() {
         return poistettu;
     }
-    
+
     public void poista() {
         this.poistettu = true;
     }

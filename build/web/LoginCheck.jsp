@@ -1,4 +1,5 @@
-<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<!--
+<%--<%@page contentType="text/html" pageEncoding="UTF-8"%>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,13 +11,13 @@
             String username = request.getParameter("username");
             String password = request.getParameter("password");
 
-            if ((username.equals("h") && password.equals("h"))) {
+            if ((username.equals("h") && password.equals("e"))) {
                 session.setAttribute("kirjautunut", username);
                 response.sendRedirect("index.jsp");
             } else {
                 session.setAttribute("onnistuiko", "ei");
                 response.sendRedirect("Kirjautuminen.jsp");
             }
-        %>
+        %>--%>
     </body>
-</html>
+</html>-->

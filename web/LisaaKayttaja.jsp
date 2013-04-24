@@ -15,12 +15,8 @@
     </head>
     <body>
 
-        <%
-            request.removeAttribute("lista");
-            if (session.getAttribute("kirjautunut") == null) {
-                response.sendRedirect("Kirjautuminen.jsp");
-            }
-        %>
+        <%@include file="vaatiiKirjautumisen.jsp" %>
+        <%@include file="vaatiiYllapitajan.jsp" %>
 
         <%@ include file="nav.jsp" %>
 
@@ -30,7 +26,7 @@
         <div class="kentat">
             <fieldset>
                 <p class="pienella">
-                    Lisää kirja tietokantaan antamalla sen tiedot alla oleviin kenttiin.<br><br>
+                    Lisää uusi käyttäjä tietokantaan antamalla tarvittavat tiedot alla oleviin kenttiin.<br><br>
                 </p>
 
                 <form name="" action="${pageContext.request.contextPath}/LisaaKayttaja" method="post">

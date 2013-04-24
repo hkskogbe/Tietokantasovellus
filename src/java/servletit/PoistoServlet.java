@@ -9,6 +9,8 @@ import kirja.Kirja;
 import listat.KirjaLista;
 
 /**
+ * Käsittelee Kirjan asettamisen poistetuksi sekä poistettu-merkinnän
+ * poistamisen.
  *
  * @author hkskogbe
  */
@@ -33,15 +35,14 @@ public class PoistoServlet extends HttpServlet {
         String poisto = request.getParameter("poistetaan");
 
         if (isbn != null) {
-            java.util.List<Kirja> poistettava = lista.getKirja(isbn);
-
-            if (!poistettava.isEmpty()) {
+            try {
+                Kirja poistettava = lista.getKirjaISBNlla(isbn);
                 if (poisto.equals("y")) {
-                    poistettava.get(0).poista();
+                    poistettava.poista();
                 } else {
-                    poistettava.get(0).setPoistettu(false);
+                    poistettava.setPoistettu(false);
                 }
-            } else {
+            } catch (Exception e) {
                 request.getSession().setAttribute("virhepoistettaessa", "ei tietokannassa");
             }
         } else {

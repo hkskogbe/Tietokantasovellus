@@ -25,6 +25,8 @@ body {
     border-bottom-width: 1px;
     box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.255);
 
+    text-shadow: 0px 1px 0px #FFFFFF;
+
     position:absolute;
     left:0;
     top:0;
@@ -47,13 +49,12 @@ h1 {
     float: right;
 }
 .ilmoitus {
-    width:300px;
     clear:both;
-    margin-left:10%;
+    margin-left:0px;
     margin-top:15px;;
 }
 .kentat {
-    width:300px;
+    width:350px;
     clear:both;
     margin-left:0px;
     margin-top:70px;

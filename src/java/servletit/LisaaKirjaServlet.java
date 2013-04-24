@@ -11,6 +11,7 @@ import listat.KirjaLista;
 import listat.KirjailijaLista;
 
 /**
+ * Ohjaa käyttäjän LisaaKirja.jsp -sivulle.
  *
  * @author hkskogbe
  */
@@ -20,9 +21,6 @@ public class LisaaKirjaServlet extends HttpServlet {
     private KirjailijaLista kirjailijat = new KirjailijaLista();
 
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response

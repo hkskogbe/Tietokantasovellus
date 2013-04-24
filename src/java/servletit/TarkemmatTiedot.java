@@ -1,20 +1,22 @@
 package servletit;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import kirja.Aihe;
 import kirja.Kirja;
 import kirja.Kirjailija;
-import listat.AiheLista;
 import listat.KirjaLista;
 import listat.KirjailijaLista;
 
+/**
+ * Käsittelee kirjan tietojen tarkemman näyttämisen.
+ *
+ * @author hkskogbe
+ */
 public class TarkemmatTiedot extends HttpServlet {
 
     private KirjaLista lista = new KirjaLista();
@@ -34,20 +36,16 @@ public class TarkemmatTiedot extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-
-
         request.getSession().setAttribute("tiedotNakyvissa", true);
 
         String isbn = request.getParameter("isbn");
-        List<Kirja> listana = lista.getKirja(isbn);
-
         Kirja kirja;
-
-        if (listana.isEmpty()) {
+        try {
+            kirja = lista.getKirjaISBNlla(isbn);
+        } catch (Exception e) {
             kirja = new Kirja("Tapahtui virhe.", isbn, 0000);
-        } else {
-            kirja = listana.get(0);
         }
+
 
 //        try {
 //        } catch (Exception e) {

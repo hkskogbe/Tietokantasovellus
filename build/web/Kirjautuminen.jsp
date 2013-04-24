@@ -38,7 +38,7 @@
                 %>
 
 
-                <form action="LoginCheck.jsp" method="post">
+                <form action="Kirjautuminen" method="post">
                     <br/>Käyttäjätunnus:<input type="text" name="username"><br>
                     <br/>Salasana:<input type="password" name="password"><br>
                     <br/><input type="submit" value="OK">

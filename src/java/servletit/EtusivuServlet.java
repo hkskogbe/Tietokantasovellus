@@ -16,9 +16,7 @@ import listat.KirjaLista;
 public class EtusivuServlet extends HttpServlet {
 
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
+     * Ohjaa käyttäjän etusivulle.
      *
      * @param request servlet request
      * @param response servlet response
@@ -27,7 +25,7 @@ public class EtusivuServlet extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         if (request.getSession().getAttribute("lista") != null) {
             request.setAttribute("lista", request.getSession().getAttribute("lista"));
         }

@@ -23,3 +23,13 @@
 <%
     }
 %>
+
+<% if (session.getAttribute("virheSyotteessa") != null) {
+        session.removeAttribute("virheSyotteessa");
+%>
+
+<p class="pienella">Syötteen käsittelyssä tietokannassa tapahtui virhe. Varmista, että hakukenttä ei sisällä erikoisia symboleita kuten ' -merkkiä.<br></p>
+
+<%
+    }
+%>

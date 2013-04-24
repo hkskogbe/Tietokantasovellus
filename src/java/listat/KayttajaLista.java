@@ -6,6 +6,11 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import kayttaja.Kayttaja;
 
+/**
+ * Käsittelee tietokannan Käyttäjä-olioita.
+ *
+ * @author hese
+ */
 public class KayttajaLista {
 
     private EntityManagerFactory tehdas = null;

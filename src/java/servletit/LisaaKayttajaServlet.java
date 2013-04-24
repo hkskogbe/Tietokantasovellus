@@ -14,17 +14,15 @@ import kayttaja.KayttajaTyyppi;
 import listat.KayttajaLista;
 
 /**
+ * Käsittelee käyttäjän lisäämisen tietokantaan.
  *
  * @author hkskogbe
  */
 public class LisaaKayttajaServlet extends HttpServlet {
 
-    KayttajaLista kayttajat = new KayttajaLista();
+    private KayttajaLista kayttajat = new KayttajaLista();
 
     /**
-     * Processes requests for both HTTP
-     * <code>GET</code> and
-     * <code>POST</code> methods.
      *
      * @param request servlet request
      * @param response servlet response
@@ -37,7 +35,7 @@ public class LisaaKayttajaServlet extends HttpServlet {
         boolean lisataan = true;
 
         if (request.getSession().getAttribute("kirjautunut") == null) {
-            request.getRequestDispatcher("/LisaaKayttaja").forward(request, response);
+            request.getRequestDispatcher("/LisaaKayttaja.jsp").forward(request, response);
             return;
         }
 
@@ -45,40 +43,29 @@ public class LisaaKayttajaServlet extends HttpServlet {
         String salasana = request.getParameter("salasana");
 
 
-        if (tunnus == null || salasana == null) {
-            lisataan = false;
-        }
-
-
-        for (Kayttaja k : kayttajat.getKayttajat()) {
-            if (k.getNimi().equalsIgnoreCase(tunnus)) {
-                lisataan = false;
-            }
-        }
-
-        MessageDigest md;
-
-        if (lisataan) {
+        if (tunnus != null && salasana != null) {
             try {
-                md = MessageDigest.getInstance("MD5");
-                byte[] bytena = md.digest(salasana.getBytes("UTF-8"));
-                Kayttaja uusi = new Kayttaja(tunnus, bytena, KayttajaTyyppi.KIRJAUTUNUT);
+                Kayttaja uusi = new Kayttaja(tunnus, salasana, KayttajaTyyppi.KIRJAUTUNUT);
                 kayttajat.lisaaKayttaja(uusi);
 
                 request.getSession().setAttribute("lisattiinkayttaja", true);
 
-            } catch (NoSuchAlgorithmException ex) {
-                lisataan = false;
-                Logger.getLogger(LisaaKayttajaServlet.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (Exception e) {
+                request.getSession().setAttribute("virhelisattaessakayttajaa", true);
+
             }
-
-        }
-
-        if (!lisataan) {
+        } else {
             request.getSession().setAttribute("virhelisattaessakayttajaa", true);
         }
 
-        request.getRequestDispatcher("/LisaaKayttaja").forward(request, response);
+
+//        for (Kayttaja k : kayttajat.getKayttajat()) {
+//            if (k.getNimi().equalsIgnoreCase(tunnus)) {
+//                lisataan = false;
+//            }
+//        }
+
+        request.getRequestDispatcher("/LisaaKayttaja.jsp").forward(request, response);
     }
 
 // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

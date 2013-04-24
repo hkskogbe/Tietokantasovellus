@@ -36,15 +36,22 @@
         session.removeAttribute("tiedotNakyvissa");
     %>
 
-    
+    <%
+        if (session.getAttribute("hakutulokset") != null) {
+            session.removeAttribute("hakutulokset");
+    %>
     <fieldset>
-    
+
         <br>
         <c:forEach var="k" items="${lista}">
             <form method="get">
                 <a href="<c:url value="/TarkemmatTiedot"><c:param name="isbn" value="${k.ISBN}"/></c:url>">${k.nimi}, ${k.julkaisuvuosi}</a>
                 </form>
         </c:forEach>
-    
+
     </fieldset>
+
+    <%        }
+
+    %>
 </div>
