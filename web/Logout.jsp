@@ -7,8 +7,6 @@
     </head>
     <body>
         <%
-            session.removeAttribute("username");
-            session.removeAttribute("password");
             session.invalidate();
         %>
         

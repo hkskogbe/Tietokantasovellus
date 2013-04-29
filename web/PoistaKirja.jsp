@@ -21,7 +21,8 @@
         <div class="kentat">
             <fieldset>
                 <p class="pienella">
-                    Kirjoita kenttään poistetuksi merkittävän teoksen ISBN.<br><br>
+                    Kirjoita kenttään poistetuksi merkittävän teoksen ISBN.<br>
+                    Varmista, että teoksen kopiot on poistettu tietokannasta Lainaukset-toiminnon avulla ennen teoksen poistamista.<br><br>
                 </p>
 
                 <form name="" action="${pageContext.request.contextPath}/Poisto" method="post">
@@ -51,7 +52,22 @@
         </div>
         <%
             }
-        %>         
+        %>    
+        
+         <%
+            if (session.getAttribute("poistomerkintaonnistui") != null) {
+                session.removeAttribute("poistomerkintaonnistui");
+        %>
+        <div class="ilmoitus">
+            <fieldset>
+                <p class="pienella">
+                    Tapahtuma käsiteltiin onnistuneesti.<br>
+                </p>       
+            </fieldset>
+        </div>
+        <%
+            }
+        %>   
 
         <script src="linkit.js"></script>
 

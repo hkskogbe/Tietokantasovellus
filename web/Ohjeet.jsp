@@ -37,6 +37,28 @@
             </fieldset>
         </div>
 
+        <div class="ohjekentta">
+            <fieldset>
+                <%@ include file="muutosohje.jsp" %>
+            </fieldset>
+        </div>
+
+        <div class="ohjekentta">
+            <fieldset>
+                <%@ include file="lainauksetohje.jsp" %>
+            </fieldset>
+        </div>
+
+        <% }%>
+        <%
+            if (session.getAttribute("yllapitaja") != null) {
+        %>
+
+        <div class="ohjekentta">
+            <fieldset>
+                <%@ include file="kayttajatohje.jsp" %>
+            </fieldset>
+        </div>
 
         <% }%>
 

@@ -28,14 +28,16 @@
                     Lisää kirja tietokantaan antamalla sen tiedot alla oleviin kenttiin.<br><br>
                     
                     Voit liittää kirjaan useamman kirjailijan erottamalla ne puolipisteellä toisistaan (merkki:  ; ). Useamman aiheen erottaminen tapahtuu pilkun (merkki:  , ) avulla.<br><br>
+
+                    Tähdellä merkityt kentät ovat pakollisia.<br><br>
                 </p>
 
                 <form name="" action="${pageContext.request.contextPath}/Lisays" method="post">
-                    <label>Kirjan nimi</label><input type="text" name="nimi"><br><br>
-                    <label>ISBN</label> <input type="text" name="isbn"><br><br>
-                    <label>Kirjailija</label><input type="text" name="kirjailija"><br><br>
-                    <label>Aiheet</label> <input type="text" name="aiheet"><br><br>
-                    <label>Julkaisuvuosi</label> <input type="text" name="vuosi"><br><br>
+                    <label>Kirjan nimi*</label>      <input class="inputtyyli" type="text" name="nimi"><br><br>
+                    <label>ISBN*</label>             <input class="inputtyyli" type="text" name="isbn"><br><br>
+                    <label>Kirjailija*</label>       <input class="inputtyyli" type="text" name="kirjailija"><br><br>
+                    <label>Aiheet</label>           <input class="inputtyyli" type="text" name="aiheet"><br><br>
+                    <label>Julkaisuvuosi*</label>    <input class="inputtyyli" type="text" name="vuosi"><br><br>
                     <input type="submit" value="Lisää kirja">
                 </form>
             </fieldset>

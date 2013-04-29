@@ -4,7 +4,6 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import kirja.Aihe;
 import kirja.Kirja;
 import kirja.Kirjailija;
 
@@ -56,5 +55,28 @@ public class KirjailijaLista {
     public List<Kirjailija> getKirjanKirjailijat(Kirja kirja) {
         EntityManager eeam = getEntityManager();
         return eeam.createQuery("SELECT k FROM Kirjailija k WHERE k.kirja.ISBN = '" + kirja.getISBN() + "'").getResultList();
+    }
+    /**
+     * Hakee kirjailijat kirjan perusteella.
+     *
+     * @param isbn
+     * @return
+     */
+    public List<Kirjailija> getKirjanKirjailijat(String isbn) {
+        EntityManager eeam = getEntityManager();
+        return eeam.createQuery("SELECT k FROM Kirjailija k WHERE k.kirja.ISBN = '" + isbn + "'").getResultList();
+    }
+
+    /**
+     * Poistetaan kaikki ISBN:ään liittyvät kirjailijat.
+     *
+     * @param kirja
+     */
+    public void poistaKirjanISBNlla(String isbn) {
+        EntityManager eeam = getEntityManager();
+
+        eeam.getTransaction().begin();
+        eeam.createQuery("DELETE FROM Kirjailija k WHERE k.kirja.ISBN = '" + isbn + "'").executeUpdate();
+        eeam.getTransaction().commit();
     }
 }

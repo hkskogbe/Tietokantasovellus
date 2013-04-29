@@ -2,31 +2,31 @@
 <web-app version="2.5" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd">
     <servlet>
         <servlet-name>LisaaKirjaServlet</servlet-name>
-        <servlet-class>servletit.LisaaKirjaServlet</servlet-class>
+        <servlet-class>servletit.kirja.LisaaKirjaServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LisaysServlet</servlet-name>
-        <servlet-class>servletit.LisaysServlet</servlet-class>
+        <servlet-class>servletit.kirja.LisaysServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ListaaKirjatServlet</servlet-name>
-        <servlet-class>servletit.ListaaKirjatServlet</servlet-class>
+        <servlet-class>servletit.haku.ListaaKirjatServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>KirjautuminenServlet</servlet-name>
-        <servlet-class>servletit.KirjautuminenServlet</servlet-class>
+        <servlet-class>servletit.kirjautuminen.KirjautuminenServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PoistoServlet</servlet-name>
-        <servlet-class>servletit.PoistoServlet</servlet-class>
+        <servlet-class>servletit.kirja.PoistoServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TarkennettuunHakuun</servlet-name>
-        <servlet-class>servletit.TarkennettuunHakuun</servlet-class>
+        <servlet-class>servletit.haku.TarkennettuunHakuun</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TarkemmatTiedot</servlet-name>
-        <servlet-class>servletit.TarkemmatTiedot</servlet-class>
+        <servlet-class>servletit.haku.TarkemmatTiedot</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>EtusivuServlet</servlet-name>
@@ -34,11 +34,35 @@
     </servlet>
     <servlet>
         <servlet-name>LisaaKayttajaServlet</servlet-name>
-        <servlet-class>servletit.LisaaKayttajaServlet</servlet-class>
+        <servlet-class>servletit.kayttaja.LisaaKayttajaServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>LainauksetServlet</servlet-name>
-        <servlet-class>servletit.LainauksetServlet</servlet-class>
+        <servlet-class>servletit.lainattava.LainauksetServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PoistaLopullisestiServlet</servlet-name>
+        <servlet-class>servletit.kirja.PoistaLopullisestiServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PoistaKayttajaServlet</servlet-name>
+        <servlet-class>servletit.kayttaja.PoistaKayttajaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SelaaKayttajaServlet</servlet-name>
+        <servlet-class>servletit.kayttaja.SelaaKayttajaServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PaivitaTiedotServlet</servlet-name>
+        <servlet-class>servletit.kirja.PaivitaTiedotServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LainausValinnatServlet</servlet-name>
+        <servlet-class>servletit.lainattava.LainausValinnatServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SelaaLainauksiaServlet</servlet-name>
+        <servlet-class>servletit.lainattava.SelaaLainauksiaServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LisaaKirjaServlet</servlet-name>
@@ -79,6 +103,30 @@
     <servlet-mapping>
         <servlet-name>LainauksetServlet</servlet-name>
         <url-pattern>/Lainaukset</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PoistaLopullisestiServlet</servlet-name>
+        <url-pattern>/PoistaLopullisesti</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PoistaKayttajaServlet</servlet-name>
+        <url-pattern>/PoistaKayttaja</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SelaaKayttajaServlet</servlet-name>
+        <url-pattern>/SelaaKayttaja</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PaivitaTiedotServlet</servlet-name>
+        <url-pattern>/PaivitaTiedot</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LainausValinnatServlet</servlet-name>
+        <url-pattern>/LainausValinnat</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SelaaLainauksiaServlet</servlet-name>
+        <url-pattern>/SelaaLainauksia</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

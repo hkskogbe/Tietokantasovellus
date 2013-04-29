@@ -24,7 +24,7 @@ public class Kirjailija implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @JoinColumn
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Kirja kirja;
     @Column
     private String kirjailijanNimi;
@@ -56,4 +56,6 @@ public class Kirjailija implements Serializable {
     public long getId() {
         return id;
     }
+    
+
 }

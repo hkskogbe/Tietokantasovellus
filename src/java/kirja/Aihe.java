@@ -23,7 +23,7 @@ public class Aihe implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
     @JoinColumn
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     private Kirja kirja;
     @Column
     private String aihe;

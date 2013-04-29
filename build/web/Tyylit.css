@@ -13,8 +13,8 @@ fieldset {
 
 body {
     background-color:#D6FFFF;
-    /*background-color:white;*/
-    font-family: Helvetica, Arial, sans-serif;
+    /*background-color:#750077;*/
+    font-family: Arial;
     margin-left:10%;
 }
 
@@ -49,15 +49,28 @@ h1 {
     float: right;
 }
 .ilmoitus {
+    width:350px;
     clear:both;
     margin-left:0px;
     margin-top:15px;;
+}
+.ilmoitus1 {
+    width:350px;
+    clear:both;
+    margin-left:0px;
+    margin-top:140px;;
 }
 .kentat {
     width:350px;
     clear:both;
     margin-left:0px;
     margin-top:70px;
+}
+.kentat1 {
+    width:350px;
+    clear:both;
+    margin-left:0px;
+    margin-top:140px;
 }
 .ohjekentta {
     width:600px;
@@ -83,4 +96,33 @@ h1 {
 }
 .kentat input {
     float:right;
+}
+.kentat1 label {
+    float:left;
+}
+.kentat1 input {
+    float:right;
+}
+.nappi {
+    width:80px;
+    clear:both;
+    position:absolute;
+    background-color: white;
+    border-style: solid;
+    border-color: darkgray;
+    cursor: pointer;
+    font-size: 1.1em;
+}
+.lainaustaulu {
+    border:solid 1px grey;
+    margin-top:10px;
+    background-color:white;
+    
+}
+.lainaustaulu tr th {
+    font-weight: normal;
+    font-size:1.05em;
+}
+.inputtyyli {
+    width: 130px;
 }

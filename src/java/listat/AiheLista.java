@@ -56,4 +56,26 @@ public class AiheLista {
         EntityManager eeam = getEntityManager();
         return eeam.createQuery("SELECT k FROM Aihe k WHERE k.kirja = '" + kirja + "'").getResultList();
     }
+    /**
+     * Hae aiheet, jotka liittyvät parametrina annettavaan kirjaan.
+     *
+     * @param ISBN
+     * @return
+     */
+    public List<Aihe> getKirjaanLiittyvatAiheet(String isbn) {
+        EntityManager eeam = getEntityManager();
+        return eeam.createQuery("SELECT k FROM Aihe k WHERE k.kirja.ISBN = '" + isbn + "'").getResultList();
+    }
+
+    /**
+     * Poistetaan kaikki ISBN:ään liittyvät aiheet.
+     *
+     * @param kirja
+     */
+    public void poistaKirjanISBNlla(String isbn) {
+        EntityManager eeam = getEntityManager();
+        eeam.getTransaction().begin();
+        eeam.createQuery("DELETE FROM Aihe k WHERE k.kirja.ISBN = '" + isbn + "'").executeUpdate();
+        eeam.getTransaction().commit();
+    }
 }

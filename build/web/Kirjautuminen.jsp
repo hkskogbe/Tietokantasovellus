@@ -39,8 +39,8 @@
 
 
                 <form action="Kirjautuminen" method="post">
-                    <br/>Käyttäjätunnus:<input type="text" name="username"><br>
-                    <br/>Salasana:<input type="password" name="password"><br>
+                    <br/>Käyttäjätunnus:<input class="inputtyyli" type="text" name="username"><br>
+                    <br/>Salasana:<input class="inputtyyli" type="password" name="password"><br>
                     <br/><input type="submit" value="OK">
                 </form>
             </fieldset>

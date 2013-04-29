@@ -18,11 +18,13 @@
             </div>
 
             <div class="oikea">
+                <input type="hidden" name="tarkennettu" value="tosi">
+                
                 <br><input type="text" name="kirja"><br><br>
                 <input type="text" name="kirjailija"><br><br>
                 <input type="text" name="aihe"><br><br>
                 <input style="float:left; margin-right:11px;" maxlength="4" class="vuosiInput" type="text" name="avuosi"> - <input class="vuosiInput" maxlength="4" type="text" name="lvuosi"><br><br>
-                <input type="submit" value="Hae" name="haku" id="tarkennettuHakuehto">
+                <input type="submit" value="Hae" name="haku" id="hakuehto">
             </div>
 
         </form>
@@ -45,7 +47,7 @@
         <%@ include file="hakuvirheilmoitus.jsp" %>
 
         <form action="${pageContext.request.contextPath}/ListaaKirjat" method="get">
-            <br/>Teoksen nimen osa tai ISBN<input type="text" name="kirja"><br>
+            <br/>Teoksen nimen osa tai ISBN<input class="inputtyyli" type="text" name="kirja""><br>
             <br/>
             <input type="submit" value="Hae" name="hae" id="hakuehto">
         </form>

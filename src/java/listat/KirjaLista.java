@@ -51,12 +51,10 @@ public class KirjaLista {
      *
      * @param ISBN
      */
-    public void poistaKirja(Kirja poistettava) {
+    public void poistaKirja(String isbn) {
         EntityManager eeam = getEntityManager();
-
         eeam.getTransaction().begin();
-//        eeam.merge(poistettava);
-        eeam.remove(poistettava);
+        eeam.createQuery("DELETE FROM Kirja k WHERE k.ISBN = '" + isbn + "'").executeUpdate();
         eeam.getTransaction().commit();
     }
 
@@ -83,7 +81,8 @@ public class KirjaLista {
     }
 
     /**
-     * Hae usealla hakuparametrilla.
+     * Hae usealla hakuparametrilla. Vain yksittäiset hakuehdot (ei
+     * listamuotoista hakua kirjailija/aihe).
      *
      * @param teos
      * @param kirjailija
@@ -93,15 +92,36 @@ public class KirjaLista {
      * @return
      */
     public List<Kirja> getKirja(String teos, String kirjailija, String aihe, String avuosi, String lvuosi) {
+
         EntityManager eeam = getEntityManager();
-        String query;
-
-        query = kirjaVuosiKysely(teos, avuosi, lvuosi);
-        
-        query = join(query, kirjailijaKysely(kirjailija));
-        query = join(query, aiheKysely(aihe));
 
 
+        String query = "SELECT DISTINCT k FROM Kirja k, Kirjailija q, Aihe a WHERE ";
+
+        if (!teos.isEmpty()) {
+            query += "UPPER(k.nimi) LIKE UPPER('%" + teos + "%') AND ";
+        }
+
+        if (!avuosi.isEmpty()) {
+            int av = Integer.parseInt(avuosi);
+            query += "k.julkaisuvuosi >= " + av + " AND ";
+        }
+
+        if (!lvuosi.isEmpty()) {
+            int lv = Integer.parseInt(lvuosi);
+            query += "k.julkaisuvuosi <= " + lv + " AND ";
+        }
+
+        if (!kirjailija.isEmpty()) {
+            query += "UPPER(q.kirjailijanNimi) LIKE UPPER('%" + kirjailija + "%') AND q.kirja = k AND ";
+        }
+
+        if (!aihe.isEmpty()) {
+            query += "UPPER(a.aihe) LIKE UPPER('%" + aihe + "%') AND a.kirja = k AND ";
+        }
+
+
+        query = query.substring(0, query.length() - 4).trim();
 
         return eeam.createQuery(query).getResultList();
     }
@@ -119,7 +139,7 @@ public class KirjaLista {
             return "";
         }
         String query = "SELECT DISTINCT k FROM Kirja k WHERE ";
-     
+
         if (!nimi.isEmpty()) {
             query += "UPPER(k.nimi) LIKE UPPER('%" + nimi + "%') AND ";
         }
@@ -151,27 +171,10 @@ public class KirjaLista {
      */
     public List<Kirja> getKirja(String nimi, List<String> kirjailijat, List<String> aiheet, String avuosi, String lvuosi) {
         EntityManager eeam = getEntityManager();
-        String query;
+        String query = "SELECT k FROM Kirja k, Aihe a, Kirjailija q WHERE ";
 
         query = kirjaVuosiKysely(nimi, avuosi, lvuosi);
 
-        if (!kirjailijat.isEmpty()) {
-
-            String kirjailijakysely = "";
-
-            for (String kir : kirjailijat) {
-                query = join(query, kirjailijaKysely(kir));
-            }
-        }
-
-
-        if (!aiheet.isEmpty()) {
-            String aihekysely = "";
-            for (String aihe : aiheet) {
-                query = join(query, aiheKysely(aihe));
-            }
-
-        }
 
 
         return eeam.createQuery(query).getResultList();
@@ -261,7 +264,7 @@ public class KirjaLista {
      * @return
      */
     private String aiheKysely(String aihe) {
-        if (aihe==null) {
+        if (aihe == null) {
             return "";
         }
         if (aihe.isEmpty()) {
@@ -269,7 +272,18 @@ public class KirjaLista {
         }
         return "SELECT k FROM Kirja k, Aihe q WHERE UPPER(q.aihe) = UPPER('%" + aihe + "%') AND q.kirja = k";
     }
-
+/**
+ * Lisää tai poistaa kirjalle poistomerkinnän.
+ * @param poistettava kirja
+ * @param arvo 
+ */
+    public void poistoMerkinta(String poistettavaISBN, boolean arvo) {
+        EntityManager eeam = getEntityManager();
+        eeam.getTransaction().begin();
+        eeam.find(Kirja.class, poistettavaISBN).setPoistettu(arvo);
+        eeam.getTransaction().commit();
+    }
+    
     /**
      * Luo kyselyn kirjojen hakemiseksi aiheen perusteella.
      *
@@ -277,7 +291,7 @@ public class KirjaLista {
      * @return
      */
     private String kirjailijaKysely(String nimi) {
-        if (nimi==null) {
+        if (nimi == null) {
             return "";
         }
         if (nimi.isEmpty()) {
